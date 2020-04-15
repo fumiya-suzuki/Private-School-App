@@ -9,4 +9,5 @@ class User < ApplicationRecord
   validates :grade, presence: true
   validates :school, presence: true
   has_secure_password
+  validates :password, presence: true, length: { minimum: 6 }
 end
