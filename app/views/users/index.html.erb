@@ -8,6 +8,8 @@
       <tr>
         <th><%= User.human_attribute_name :number %></th>
         <th><%= User.human_attribute_name :name %></th>
+        <th><%= User.human_attribute_name :grade %></th>
+        <th><%= User.human_attribute_name :school %></th>
       </tr>
     </thead>
 
@@ -15,13 +17,8 @@
       <tr>
         <td><%= user.number %></td>
         <td><%= link_to user.name, user %></td>
-        <td>
-          <% if current_user.admin? && !current_user?(user) %>
-            <%= link_to "削除", user, method: :delete,
-                data: { confirm: "削除してよろしいですか？" },
-                class: "btn btn-danger" %>
-          <% end %>
-        </td>
+        <td><%= user.grade %></td>
+        <td><%= user.school %></td>
       </tr>
     <% end %>
   </table>

@@ -22,5 +22,56 @@ User.create!(name: "鈴木郁哉",
                grade: grade,
                number: number,
                password: password,
+               password_confirmation: password,
+               teacher: true)
+end
+
+
+
+8.times do |n|
+  name  = Faker::Name.name
+  tel = "0701111222#{n+1}"
+  password = "password"
+  school = "茨城#{n+1}中学校"
+  grade = 1
+  number = "2111#{n}"
+  User.create!(name: name,
+               tel: tel,
+               school: school,
+               grade: grade,
+               number: number,
+               password: password,
+               password_confirmation: password)
+end
+
+8.times do |n|
+  name  = Faker::Name.name
+  tel = "0803333222#{n+1}"
+  password = "password"
+  school = "茨城#{n+1}中学校"
+  grade = 2
+  number = "3111#{n}"
+  User.create!(name: name,
+               tel: tel,
+               school: school,
+               grade: grade,
+               number: number,
+               password: password,
+               password_confirmation: password)
+end
+
+8.times do |n|
+  name  = Faker::Name.name
+  tel = "0804444222#{n+1}"
+  password = "password"
+  school = "茨城#{n+1}中学校"
+  grade = 3
+  number = "4111#{n}"
+  User.create!(name: name,
+               tel: tel,
+               school: school,
+               grade: grade,
+               number: number,
+               password: password,
                password_confirmation: password)
 end

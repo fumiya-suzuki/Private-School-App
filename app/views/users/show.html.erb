@@ -1,2 +1,37 @@
 <% provide(:title, @user.name) %>
-<h1><%= @user.name %>, <%= @user.number %></h1>
+<h3>生徒ID：<%= @user.number %></h3>
+<h1><%= @user.name %></h1>
+
+<div class="col-md-10 col-md-offset-1 user-show-table">
+  <table class="table table-condensed table-bordered table-hover" id="table-users">
+    <tr>
+      <th>学校名</th>
+      <td><%= @user.school %></td>
+    </tr>
+    
+    <tr>
+      <th>学年</th>
+      <td><%= @user.grade %></td>
+    </tr>
+    
+    <tr>
+      <th>電話番号</th>
+      <td><%= @user.tel %></td>
+    </tr>
+    
+    <tr>
+      <th>入塾日</th>
+      <td><%= l(@user.created_at, format: :day) %></td>
+    </tr>
+  </table>
+<div class= "edit-btn">
+   <% if current_user.admin? && !current_user?(@user) %>
+     <%= link_to "削除", @user, method: :delete,
+         data: { confirm: "削除してよろしいですか？" },
+         class: "btn btn-danger" %>
+   <% end %>
+    <% if current_user.admin? && !current_user?(@user) %>
+     <%= link_to "編集", edit_user_path(@user), class: "btn btn-success" %>
+   <% end %>
+   </div>
+</div>

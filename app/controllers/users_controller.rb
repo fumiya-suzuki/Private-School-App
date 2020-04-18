@@ -34,10 +34,10 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.paginate(page: params[:page]).where(teacher: nil)
   end
   
-   def destroy
+  def destroy
     @user.destroy
     flash[:success] = "#{@user.name}のデータを削除しました。"
     redirect_to users_url
@@ -67,6 +67,8 @@ class UsersController < ApplicationController
     
     # アクセスしたユーザーが現在ログインしているユーザーか確認します。
     def correct_user
-      redirect_to(root_url) unless current_user?(@user)
+      unless current_user?(@user) || current_user.admin?
+        redirect_to(root_url) 
+      end
     end
 end
