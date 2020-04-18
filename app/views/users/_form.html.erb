@@ -1,0 +1,26 @@
+<%= form_with(model: @user, local: true) do |f| %>
+      <%= render 'shared/error_messages' %>
+      
+      <%= f.label :name, class: "label-#{yield(:class_text)}" %>
+      <%= f.text_field :name, class: "form-control" %>
+
+      <%= f.label :tel, class: "label-#{yield(:class_text)}" %>
+      <%= f.text_field :tel, class: "form-control" %>
+      
+      <%= f.label :school, class: "label-#{yield(:class_text)}" %>
+      <%= f.text_field :school, class: "form-control" %>
+      
+      <%= f.label :grade, class: "label-#{yield(:class_text)}" %>
+      <%= f.number_field :grade, class: "form-control" %>
+      
+      <%= f.label :number, class: "label-#{yield(:class_text)}" %>
+      <%= f.text_field :number, class: "form-control" %>
+
+      <%= f.label :password, class: "label-#{yield(:class_text)}" %>
+      <%= f.password_field :password, class: "form-control" %>
+
+      <%= f.label :password_confirmation, "Confirmation", class: "label-#{yield(:class_text)}" %>
+      <%= f.password_field :password_confirmation, class: "form-control" %>
+
+      <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
+    <% end %>
