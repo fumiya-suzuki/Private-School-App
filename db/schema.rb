@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(version: 20200416104340) do
     t.string "name"
     t.string "school"
     t.string "tel"
-    t.boolean "admin"
-    t.boolean "teacher"
+    t.boolean "admin", default: false
+    t.boolean "teacher", default: false
     t.string "student"
     t.string "boolean"
     t.integer "grade"

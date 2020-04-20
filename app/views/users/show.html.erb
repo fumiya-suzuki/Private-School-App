@@ -1,9 +1,24 @@
 <% provide(:title, @user.name) %>
-<h3>生徒ID：<%= @user.number %></h3>
+<% if @user.teacher == true %>
+    <h3>講師ID：<%= @user.number %></h3>
+<% else %>
+    <h3>生徒ID：<%= @user.number %></h3>
+<% end %>
 <h1><%= @user.name %></h1>
 
 <div class="col-md-10 col-md-offset-1 user-show-table">
   <table class="table table-condensed table-bordered table-hover" id="table-users">
+    <% if @user.teacher == true %>
+    <tr>
+      <th>電話番号</th>
+      <td><%= @user.tel %></td>
+    </tr>
+    
+    <tr>
+      <th>入塾日</th>
+      <td><%= l(@user.created_at, format: :day) %></td>
+    </tr>
+    <% else %>
     <tr>
       <th>学校名</th>
       <td><%= @user.school %></td>
@@ -23,6 +38,7 @@
       <th>入塾日</th>
       <td><%= l(@user.created_at, format: :day) %></td>
     </tr>
+    <% end %>
   </table>
 <div class= "edit-btn">
    <% if current_user.admin? && !current_user?(@user) %>
@@ -31,7 +47,11 @@
          class: "btn btn-danger" %>
    <% end %>
     <% if current_user.admin? && !current_user?(@user) %>
-     <%= link_to "編集", edit_user_path(@user), class: "btn btn-success" %>
+        <% if @user.teacher != true %>
+            <%= link_to "編集", edit_user_path(@user), class: "btn btn-success" %>
+        <% else %>
+            <%= link_to "編集", edit_teacher_user_path(@user), class: "btn btn-success" %>
+        <% end %>
    <% end %>
    </div>
 </div>

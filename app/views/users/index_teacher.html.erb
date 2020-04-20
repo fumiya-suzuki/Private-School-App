@@ -1,15 +1,13 @@
-<% provide(:title, 'Students') %>
-<h1>生徒一覧</h1>
+<% provide(:title, 'Teachers') %>
+<h1>講師一覧</h1>
 
 <div class="col-md-10 col-md-offset-1">
   <%= will_paginate %>
   <table class="table table-condensed table-hover" id="table-users">
     <thead>
       <tr>
-        <th>生徒<%= User.human_attribute_name :number %></th>
+        <th>講師<%= User.human_attribute_name :number %></th>
         <th><%= User.human_attribute_name :name %></th>
-        <th><%= User.human_attribute_name :grade %></th>
-        <th><%= User.human_attribute_name :school %></th>
       </tr>
     </thead>
 
@@ -17,8 +15,6 @@
       <tr>
         <td><%= user.number %></td>
         <td><%= link_to user.name, user %></td>
-        <td><%= user.grade %></td>
-        <td><%= user.school %></td>
       </tr>
     <% end %>
   </table>

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_teacher, :update_teacher]
   before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
   
@@ -21,6 +21,8 @@ class UsersController < ApplicationController
     end
   end
   
+  
+  
   def edit
   end
   
@@ -34,7 +36,7 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users = User.paginate(page: params[:page]).where(teacher: nil)
+    @users = User.paginate(page: params[:page]).where(teacher: false).where.not(admin: true)
   end
   
   def destroy
@@ -43,12 +45,46 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
   
+  def index_teacher
+    @users = User.paginate(page: params[:page]).where(teacher: true)
+  end
+  
+  def new_teacher
+    @user = User.new
+  end
+  
+  def create_teacher
+    @user = User.new(teacher_params)
+    if @user.save
+      flash[:success] = "新規作成に成功しました。"
+      redirect_to @user
+    else
+      render :new_teacher
+    end
+  end
+  
+  def edit_teacher
+    
+  end
+  
+  def update_teacher
+    if @user.update_attributes(teacher_params)
+      flash[:success] = "ユーザー情報を更新しました。"
+      redirect_to @user
+    else
+      render :edit      
+    end
+  end
 
   
   private
 
     def user_params
-      params.require(:user).permit(:name, :tel, :number, :school, :grade, :number, :password, :password_confirmation)
+      params.require(:user).permit(:name, :tel, :number, :school, :grade, :password, :password_confirmation)
+    end
+    
+    def teacher_params
+      params.require(:user).permit(:name, :tel, :number, :school, :grade, :password, :password_confirmation, :teacher)
     end
     
     # paramsハッシュからユーザーを取得します。

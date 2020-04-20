@@ -5,8 +5,8 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :school
       t.string :tel
-      t.boolean :admin
-      t.boolean :teacher
+      t.boolean :admin, default: false
+      t.boolean :teacher, default: false
       t.string :student
       t.string :boolean
       t.integer :grade

@@ -7,7 +7,7 @@ ja:
           id: ID
           name: 名前
           tel: 電話番号
-          number: 生徒ID
+          number: ID
           school: 学校
           grade: 学年
           password: パスワード
