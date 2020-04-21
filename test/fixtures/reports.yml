@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  teacher_id: 1
+  subject: MyString
+  note: MyString
+  admin_confirm: 1
+  day: 2020-04-21 06:41:40
+  user: one
+
+two:
+  teacher_id: 1
+  subject: MyString
+  note: MyString
+  admin_confirm: 1
+  day: 2020-04-21 06:41:40
+  user: two

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :reports, dependent: :destroy
   attr_accessor :remember_token
   
   validates :name, presence: true

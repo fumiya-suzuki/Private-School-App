@@ -1,0 +1,17 @@
+<%= form_with(model: [@user, @report], local: true) do |f| %>
+      <%= render 'shared/report_errors_messages' %>
+      
+      <%= f.label :day, class: "label-#{yield(:class_text)}" %>
+      <%= f.date_field :day,class: "form-control" %>
+      
+      <%= f.label :subject, class: "label-#{yield(:class_text)}" %>
+      <%= f.select :subject, [['国語', '国語'], ['英語', '英語'], ['数学', '数学'],['社会', '社会'],['理科', '理科']],{ include_blank: "教科を選択"},  class: "form-control" %>
+      
+      <%= f.label :note, class: "label-#{yield(:class_text)}" %>
+      <%= f.text_area :note, class: "form-control" %>
+      
+      <%= f.hidden_field :teacher_id, value: current_user.id %>
+      <%= f.hidden_field :admin_confirm, value: 1 %>
+
+      <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
+    <% end %>

@@ -1,0 +1,29 @@
+<% provide(:title, 'Reports') %>
+<h1>日報一覧</h1>
+<div class="col-md-10 col-md-offset-1">
+
+  <table class="table table-condensed table-hover" id="table-users">
+    <thead>
+      <tr>
+        <th><%= Report.human_attribute_name :day %></th>
+        <th><%= Report.human_attribute_name :subject %></th>
+        <th>担当講師</th>
+        <th><%= Report.human_attribute_name :note %></th>
+      </tr>
+    </thead>
+
+    <% @reports.each do |report| %>
+      <tr>
+        <td><%= l(report.day, format: :day) %></td>
+        <td><%= report.subject %></td>
+        <td><%= User.find_by(id: report.teacher_id).name %></td>
+        <td>
+            <button type="button"  data-toggle="collapse" data-target="#demo<%= report.id %>">▽</button>
+            <div id="demo<%= report.id %>" class="collapse report-note">
+                <p><%= report.note %></p>
+            </div>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

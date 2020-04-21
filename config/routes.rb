@@ -14,9 +14,12 @@ Rails.application.routes.draw do
       get 'edit_teacher'
       patch 'update_teacher'
     end
+      resources :reports 
   end
   get '/new_teacher', to: 'users#new_teacher'
   post '/create_teacher', to: 'users#create_teacher'
   get '/index_teacher', to: 'users#index_teacher'
   get '/search', to: 'users#search'
+  
+
 end

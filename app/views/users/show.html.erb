@@ -49,6 +49,22 @@
       <td><%= l(@user.created_at, format: :day) %></td>
     </tr>
     <% end %>
+    <% if current_user.teacher? && @user.teacher == false %>
+    <tr>
+      <th>日報提出</th>
+      <td>
+        <%= link_to "日報提出", new_user_report_path(@user), class: "btn btn-info" %>
+      </td>
+    </tr>
+    <% end %>
+    <% if current_user.teacher? && @user.teacher == false %>
+    <tr>
+      <th>日報一覧</th>
+      <td>
+        <%= link_to "日報一覧", user_reports_path(@user), class: "btn btn-info" %>
+      </td>
+    </tr>
+    <% end %>
   </table>
 <div class= "edit-btn">
    <% if current_user.admin? && !current_user?(@user) %>
