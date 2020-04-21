@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      log_in @user
+      log_in @user unless current_user.admin?
       flash[:success] = "新規作成に成功しました。"
       redirect_to @user
     else
@@ -74,6 +74,12 @@ class UsersController < ApplicationController
     else
       render :edit      
     end
+  end
+
+  def search
+    @users = User.where('grade LIKE ?', "%#{params[:grade]}%").where.not(admin: true)
+    @users = @users.paginate(page: params[:page])
+    render :index
   end
 
   

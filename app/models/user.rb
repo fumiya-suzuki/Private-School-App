@@ -8,8 +8,8 @@ class User < ApplicationRecord
   validates :tel, presence: true, 
                   format: { with: VALID_TEL_REGEX },
                   uniqueness: true
-  validates :grade, presence: true
-  validates :school, presence: true
+  validates :grade, presence: true, unless: :user_teacher?
+  validates :school, presence: true, unless: :user_teacher?
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   
@@ -43,6 +43,10 @@ class User < ApplicationRecord
   # ユーザーのログイン情報を破棄します。
   def forget
     update_attribute(:remember_digest, nil)
+  end
+  
+  def user_teacher?
+    teacher == true 
   end
   
 

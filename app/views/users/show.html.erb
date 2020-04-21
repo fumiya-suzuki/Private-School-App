@@ -26,7 +26,17 @@
     
     <tr>
       <th>学年</th>
-      <td><%= @user.grade %></td>
+      <td>
+         <% if (@user.grade == 1) ||  (@user.grade == 2) ||  (@user.grade == 3) %>
+            <%= @user.grade %>
+          <% elsif @user.grade == 4 %>
+            1(高)
+          <% elsif @user.grade == 5 %>
+            2(高)
+          <% elsif @user.grade == 6 %>
+            3(高)
+          <% end %>
+      </td>
     </tr>
     
     <tr>

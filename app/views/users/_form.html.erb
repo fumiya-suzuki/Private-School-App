@@ -11,7 +11,7 @@
       <%= f.text_field :school, class: "form-control" %>
       
       <%= f.label :grade, class: "label-#{yield(:class_text)}" %>
-      <%= f.number_field :grade, class: "form-control" %>
+      <%= f.select :grade, [['中1', 1], ['中2', 2], ['中3', 3],['高1', 4],['高2', 5], ['高3',6]],{ include_blank: "学年を選択"},  class: "form-control" %>
       
       <%= f.label :number, class: "label-#{yield(:class_text)}" %>
       <%= f.text_field :number, class: "form-control" %>

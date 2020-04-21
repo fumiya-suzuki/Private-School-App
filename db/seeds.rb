@@ -71,3 +71,51 @@ end
                password: password,
                password_confirmation: password)
 end
+
+8.times do |n|
+  name  = Faker::Name.name
+  tel = "0807777222#{n+1}"
+  password = "password"
+  school = "茨城#{n+1}高等学校"
+  grade = 4
+  number = "5111#{n}"
+  User.create!(name: name,
+               tel: tel,
+               school: school,
+               grade: grade,
+               number: number,
+               password: password,
+               password_confirmation: password)
+end
+
+8.times do |n|
+  name  = Faker::Name.name
+  tel = "0807777666#{n+1}"
+  password = "password"
+  school = "茨城#{n+1}高等学校"
+  grade = 5
+  number = "6111#{n}"
+  User.create!(name: name,
+               tel: tel,
+               school: school,
+               grade: grade,
+               number: number,
+               password: password,
+               password_confirmation: password)
+end
+
+8.times do |n|
+  name  = Faker::Name.name
+  tel = "0807777999#{n+1}"
+  password = "password"
+  school = "茨城#{n+1}高等学校"
+  grade = 6
+  number = "7111#{n}"
+  User.create!(name: name,
+               tel: tel,
+               school: school,
+               grade: grade,
+               number: number,
+               password: password,
+               password_confirmation: password)
+end
