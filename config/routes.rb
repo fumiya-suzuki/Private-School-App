@@ -13,13 +13,20 @@ Rails.application.routes.draw do
     member do
       get 'edit_teacher'
       patch 'update_teacher'
+      get 'reports/admin_index'
     end
-      resources :reports 
+    
+    resources :reports do
+      member do
+        patch 'admin_update'
+      end
+    end
   end
   get '/new_teacher', to: 'users#new_teacher'
   post '/create_teacher', to: 'users#create_teacher'
   get '/index_teacher', to: 'users#index_teacher'
   get '/search', to: 'users#search'
+  
   
 
 end

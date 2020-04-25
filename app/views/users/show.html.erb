@@ -57,13 +57,15 @@
       </td>
     </tr>
     <% end %>
-    <% if current_user.teacher? && @user.teacher == false %>
+    <% if current_user.teacher? || current_user.admin?  %>
+    <% unless @user.teacher? || @user.admin? %>
     <tr>
       <th>日報一覧</th>
       <td>
         <%= link_to "日報一覧", user_reports_path(@user), class: "btn btn-info" %>
       </td>
     </tr>
+    <% end %>
     <% end %>
   </table>
 <div class= "edit-btn">

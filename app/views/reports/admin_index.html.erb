@@ -1,22 +1,24 @@
 <% provide(:title, 'Reports') %>
-<h1>日報一覧</h1>
-<h3>生徒名：<%= @user.name %></h3>
+<h1>日報申請</h1>
 <div class="col-md-10 col-md-offset-1">
-
+ <%= form_with(model: @user, url: admin_update_user_report_path(@user) , method: :patch, local: true) do |f| %>
   <table class="table table-condensed table-hover" id="table-users">
     <thead>
       <tr>
         <th class="report"><%= Report.human_attribute_name :day %></th>
+        <th class="report">生徒名</th>
         <th class="report"><%= Report.human_attribute_name :subject %></th>
         <th class="report">担当講師</th>
         <th><%= Report.human_attribute_name :note %></th>
+        <th class="report">変更</th>
+        <th class="report">塾長㊞</th>
       </tr>
     </thead>
 
     <% @reports.each do |report| %>
-    <% if report.admin_confirm == 2 %>
       <tr>
         <td class="report"><%= l(report.day, format: :day) %></td>
+        <td class="report"><%= report.user.name %></td>
         <td class="report"><%= report.subject %></td>
         <td class="report"><%= User.find_by(id: report.teacher_id).name %></td>
         <td>
@@ -25,15 +27,21 @@
                 <p><%= report.note %></p>
             </div>
         </td>
+        <%= f.fields_for "reports[]", report do |r| %>
+        <td class="report">
+          <%= r.check_box :change, as: :boolean %>    
+        </td>
+        <td class="report-form">
+          <%= r.select :admin_confirm,[
+                      ["未確認", 1],
+                      ["確認済", 2]
+                      ] ,{}, {class: "form-control"}
+                      %>
+        </td>
+        <% end %>
+        <% end %>
       </tr>
-    <% elsif report.admin_confirm == 1 %>
-      <tr>
-        <td><%= l(report.day, format: :day) %></td>
-        <td></td>
-        <td><%= User.find_by(id: report.teacher_id).name %></td>
-        <td>塾長確認待ち</td>
-      </tr>
-    <% end %>
-    <% end %>
   </table>
+  <%= f.submit "変更を送信する" ,class: "btn btn-primary btn-lg approval-btn" %>
+  <% end %>
 </div>

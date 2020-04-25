@@ -3,8 +3,15 @@
     <%= link_to "Private School App", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
+        
+        
         <li><%= link_to "ホーム", root_path %></li>
         <% if logged_in? %>
+          <li>
+            <% if current_user.admin? %>
+              <%= link_to "🔔", reports_admin_index_user_path(current_user) %>
+            <% end %>
+          </li>
           <li><%= link_to "生徒一覧", users_path %></li>
           <li><%= link_to "講師一覧", index_teacher_path %></li>
           <li class="dropdown">
