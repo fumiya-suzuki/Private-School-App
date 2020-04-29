@@ -69,6 +69,11 @@
     <% end %>
   </table>
 <div class= "edit-btn">
+      <% if current_user.admin? || current_user?(@user)  %>
+        <% if @user.teacher? %>
+            <%= link_to "勤怠登録", user_attendances_path(@user), class: "btn btn-success" %>
+        <% end %>
+      <% end %>
    <% if current_user.admin? && !current_user?(@user) %>
      <%= link_to "削除", @user, method: :delete,
          data: { confirm: "削除してよろしいですか？" },

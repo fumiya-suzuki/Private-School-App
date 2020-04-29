@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  worked_on: 2020-04-25
+  c_one: 1
+  c_two: 1
+  k_one: 1
+  k_two: 1
+  user: one
+
+two:
+  worked_on: 2020-04-25
+  c_one: 1
+  c_two: 1
+  k_one: 1
+  k_two: 1
+  user: two

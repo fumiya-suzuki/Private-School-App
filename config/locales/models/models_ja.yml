@@ -3,6 +3,7 @@ ja:
     models:
       user: ユーザー
       report: 日報
+      attendance: 勤怠
     attributes:
         user:
           id: ID
@@ -21,3 +22,9 @@ ja:
           teacher_id: 担当講師
           admin_confirm: 塾長確認
           day: 日付
+        attendance:
+          worked_on: 日付
+          c_one:  中1：1
+          c_two:  中1：2以上
+          k_one:  高1：1
+          k_two:  高1：2以上

@@ -1,0 +1,72 @@
+
+<%= form_with(model: @user, url: user_attendances_update_one_month_path(date: @first_day), local: true, method: :patch) do |f| %>
+<div>
+  <h1>勤怠登録画面</h1>
+  
+  <div class="btn-users-show">
+  <%= link_to "⇦ 前月へ", user_attendances_path(date: @first_day.prev_month), class: "btn btn-info" %>
+  <%= link_to "次月へ ⇨", user_attendances_path(date: @first_day.next_month), class: "btn btn-info" %>
+</div>
+
+  <table class="table table-bordered table-condensed table-hover" id="table-attendances">
+    <thead>
+      <tr>
+        <th>日付</th>
+        <th>曜日</th>
+        <th>中学生1：1</th>
+        <th>中学生1：2以上</th>
+        <th>高校生1：1</th>
+        <th>高校生1：2以上</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @attendances.each do |day| %>
+       <%= f.fields_for "attendances[]", day do |attendance| %>
+        <tr>
+          <td><%= l(day.worked_on, format: :short) %></td>
+          <td><%= $days_of_the_week[day.worked_on.wday] %></td>
+          <% if !current_user.admin? && (Date.current < @last_day) %>
+            <td><%= attendance.number_field :c_one, class: "form-control" %></td>
+            <td><%= attendance.number_field :c_two, class: "form-control" %></td>
+            <td><%= attendance.number_field :k_one, class: "form-control" %></td>
+            <td><%= attendance.number_field :k_two, class: "form-control" %></td>
+          <% else %>
+            <td><%= day.c_one %></td>
+            <td><%= day.c_two %></td>
+            <td><%= day.k_one %></td>
+            <td><%= day.k_two %></td>
+          <% end %>
+        </tr>
+       <% end %>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan=2>合計</td>
+        <td><%= c_one_sum = @attendances.sum(:c_one).to_f %></td>
+        <td><%= c_two_sum = @attendances.sum(:c_two).to_f %></td>
+        <td><%= k_one_sum = @attendances.sum(:k_one).to_f %></td>
+        <td><%= k_two_sum = @attendances.sum(:k_two).to_f %></td>
+      </tr>
+      <tr>
+        <td>出勤日数</td>
+        <td><%= @attendances.count - @attendances_break %>日</td>
+        <td>交通費(150円/1出勤)</td>
+        <td><%= transportation = (@attendances.count - @attendances_break)* 150 %>円</td>
+        <td>給料合計</td>
+        <td><%= c_one_sum*1100 + c_two_sum*1300 + k_one_sum*1300 + k_two_sum*1500 + transportation %>円</td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+  <div class="center">
+    <% if !current_user.admin? && (Date.current < @last_day) %>
+    <%= f.submit "勤怠情報更新", class: "btn btn-lg btn-primary" %>
+    <%= link_to "キャンセル", user_attendances_path(date: @first_day), class: "btn btn-lg btn-default" %>
+    <% else %>
+    
+    <% end %>
+  </div>
+
+<% end %>

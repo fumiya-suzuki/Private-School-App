@@ -15,7 +15,8 @@ Rails.application.routes.draw do
       patch 'update_teacher'
       get 'reports/admin_index'
     end
-    
+     patch 'attendances/update_one_month'
+    resources :attendances
     resources :reports do
       member do
         patch 'admin_update'
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
   post '/create_teacher', to: 'users#create_teacher'
   get '/index_teacher', to: 'users#index_teacher'
   get '/search', to: 'users#search'
+  
   
   
 
