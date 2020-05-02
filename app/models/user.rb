@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :reports, dependent: :destroy
   has_many :attendances, dependent: :destroy
   attr_accessor :remember_token
+  mount_uploader :image, ImageUploader
   
   validates :name, presence: true
   validates :number, presence: true, length: { minimum: 5 },

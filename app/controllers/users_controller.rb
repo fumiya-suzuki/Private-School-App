@@ -90,7 +90,7 @@ class UsersController < ApplicationController
     end
     
     def teacher_params
-      params.require(:user).permit(:name, :tel, :number, :school, :grade, :password, :password_confirmation, :teacher)
+      params.require(:user).permit(:name, :tel, :number, :school, :grade, :password, :password_confirmation, :teacher, :image)
     end
     
     

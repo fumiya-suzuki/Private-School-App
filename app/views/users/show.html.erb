@@ -4,6 +4,12 @@
 <% else %>
     <h3>生徒ID：<%= @user.number %></h3>
 <% end %>
+
+<div class="image">
+  <% if @user.image? %>
+  <%= image_tag @user.image.url %>
+<% end %>
+</div>
 <h1><%= @user.name %></h1>
 
 <div class="col-md-10 col-md-offset-1 user-show-table">

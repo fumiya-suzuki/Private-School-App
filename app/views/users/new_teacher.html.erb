@@ -8,6 +8,9 @@
     <%= form_with(model: @user,url: create_teacher_path, local: true) do |f| %>
       <%= render 'shared/error_messages' %>
       
+      <%= f.label :image, class: "label-signup" %>
+      <%= f.file_field :image, class: "form-control" %>
+      
       <%= f.label :name, class: "label-signup" %>
       <%= f.text_field :name, class: "form-control" %>
 
