@@ -23,7 +23,11 @@
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to "詳細", current_user %></li>
-              <li><%= link_to "情報編集", edit_user_path(current_user) %></li>
+              <% unless current_user.teacher? %>
+                <li><%= link_to "情報編集", edit_user_path(current_user) %></li>
+              <% else %>
+                <li><%= link_to "情報編集", edit_teacher_user_path(current_user) %></li>
+              <% end %>
               <li class="divider"></li>
               <li>
                 <%= link_to "ログアウト", logout_path, method: :delete %>

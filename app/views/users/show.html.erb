@@ -7,11 +7,10 @@
 
 <div class="image">
   <% if @user.image? %>
-  <%= image_tag @user.image.url %>
-<% end %>
-</div>
+    <li><%= image_tag @user.image.url %></li>
+  <% end %>
 <h1><%= @user.name %></h1>
-
+</div>
 <div class="col-md-10 col-md-offset-1 user-show-table">
   <table class="table table-condensed table-bordered table-hover" id="table-users">
     <% if @user.teacher == true %>

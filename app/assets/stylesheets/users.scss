@@ -54,3 +54,17 @@
   text-align: center;
 }
 
+.image {
+  text-align: center;
+  li {
+    display: inline-block;
+    width: 100px;
+    vertical-align: middle;
+    padding-bottom: 15px;
+  }
+  h1 {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
