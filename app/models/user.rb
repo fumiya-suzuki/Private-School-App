@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :reports, dependent: :destroy
   has_many :attendances, dependent: :destroy
+  has_many :tests, dependent: :destroy
   attr_accessor :remember_token
   mount_uploader :image, ImageUploader
   

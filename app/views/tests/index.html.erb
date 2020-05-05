@@ -1,0 +1,28 @@
+<% provide(:title, 'Tests') %>
+<div class="col-md-10 col-md-offset-1">
+  <table class="table table-condensed table-hover" id="table-users">
+    <thead>
+      <tr>
+        <th></th>
+        <th>テスト結果報告日</th>
+        <th>テスト名</th>
+      </tr>
+    </thead>
+    <% @tests.each do |test| %>
+    <tr>
+      <td>
+        <% if test.types == 1 %>
+          定期
+        <% elsif test.types == 2 %>
+          模試
+        <% end %>
+        </td>
+      <td><%= test.day %></td>
+      <td><%= link_to test.name, show_subject_user_test_path(@user, test), remote: true %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>
+
+<!--モーダルウインドウ表示-->
+<div id="show-subject" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

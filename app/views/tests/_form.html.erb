@@ -1,0 +1,39 @@
+<%= form_with(model: [@user, @test], local: true) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <div class= "radio">
+      <label>
+       <%= f.radio_button :types, 1 %>
+       <%= f.label :types, "定期" %>
+       </label>
+       </div>
+       <div class= "radio">
+       <label>
+       <%= f.radio_button :types, 2 %>
+       <%= f.label :types, "模試" %>
+       </label>
+      </div>
+      
+      <%= f.label :day, class: "label-#{yield(:class_text)}" %>
+      <%= f.date_field :day, class: "form-control" %>
+      
+      <%= f.label :name, class: "label-#{yield(:class_text)}" %>
+      <%= f.text_field :name, class: "form-control" %>
+      
+      <%= f.label :english, class: "label-#{yield(:class_text)}" %>
+      <%= f.number_field :english, class: "form-control" %>
+      
+      <%= f.label :math, class: "label-#{yield(:class_text)}" %>
+      <%= f.number_field :math, class: "form-control" %>
+
+      <%= f.label :japanese, class: "label-#{yield(:class_text)}" %>
+      <%= f.number_field :japanese, class: "form-control" %>
+
+      <%= f.label :science, class: "label-#{yield(:class_text)}" %>
+      <%= f.number_field :science, class: "form-control" %>
+      
+      <%= f.label :society, class: "label-#{yield(:class_text)}" %>
+      <%= f.number_field :society, class: "form-control" %>
+
+      <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
+    <% end %>

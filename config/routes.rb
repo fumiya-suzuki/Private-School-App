@@ -22,6 +22,11 @@ Rails.application.routes.draw do
         patch 'admin_update'
       end
     end
+    resources :tests do
+      member do
+        get 'show_subject'
+      end
+    end
   end
   get '/new_teacher', to: 'users#new_teacher'
   post '/create_teacher', to: 'users#create_teacher'
