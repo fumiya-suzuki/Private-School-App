@@ -12,13 +12,15 @@ class TestsController < ApplicationController
     else
       render  :new
     end
-    redirect_to @user
+    redirect_to user_tests_path(@user)
   end
   
   
   def index 
-    @tests = Test.all
     @user = User.find(params[:user_id])
+    @tests = Test.where(user_id: @user.id)
+    @demo_tests = Test.where(user_id: @user.id, types: 2)
+    @periodic_tests = Test.where(user_id: @user.id, types: 1)
   end
   
   def show_subject
@@ -30,6 +32,7 @@ class TestsController < ApplicationController
   private
   
   def test_params
-    params.require(:test).permit(:day, :types, :english, :math, :japanese, :science, :society, :name)
+    params.require(:test).permit(:day, :types, :english, :math, :japanese, :science, :society, :name, :five_subjects, :three_subjects)
   end
+  
 end

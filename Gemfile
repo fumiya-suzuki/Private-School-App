@@ -16,6 +16,7 @@ gem 'turbolinks',   '~> 5'
 gem 'jbuilder',     '~> 2.5'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'chartkick'
 
 group :development, :test do
   gem 'sqlite3'

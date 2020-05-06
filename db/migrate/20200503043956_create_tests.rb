@@ -3,11 +3,11 @@ class CreateTests < ActiveRecord::Migration[5.2]
     create_table :tests do |t|
       t.date :day
       t.integer :types
-      t.integer :english
-      t.integer :math
-      t.integer :japanese
-      t.integer :science
-      t.integer :society
+      t.integer :english, default: 0
+      t.integer :math, default: 0
+      t.integer :japanese, default: 0
+      t.integer :science, default: 0
+      t.integer :society, default: 0
       t.text :comment
       t.references :user, foreign_key: true
 

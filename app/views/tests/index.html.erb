@@ -1,5 +1,6 @@
 <% provide(:title, 'Tests') %>
 <div class="col-md-10 col-md-offset-1">
+  <h1>【テスト結果】<%= @user.name %></h1>
   <table class="table table-condensed table-hover" id="table-users">
     <thead>
       <tr>
@@ -20,8 +21,76 @@
       <td><%= test.day %></td>
       <td><%= link_to test.name, show_subject_user_test_path(@user, test), remote: true %></td>
     </tr>
+
     <% end %>
   </table>
+    <div class= "total-subject">
+      <h3>定期テスト5教科</h3>
+      <%= column_chart @periodic_tests.pluck(:day, :five_subjects) %>
+    </div>
+    
+    <div class= "total-subject">
+      <h3>模試5教科</h3>
+      <%= column_chart @demo_tests.pluck(:day, :five_subjects) %>
+    </div>
+    
+        <div class= "total-subject">
+      <h3>定期テスト3教科</h3>
+      <%= column_chart @periodic_tests.pluck(:day, :three_subjects) %>
+    </div>
+    
+    <div class= "total-subject">
+      <h3>模試3教科</h3>
+      <%= column_chart @demo_tests.pluck(:day, :three_subjects) %>
+    </div>
+  
+  <button type="button"  data-toggle="collapse" data-target="#testdemo1", class= "btn btn-primary">定期テスト</button>
+  <div id="testdemo1" class="collapse test-note">
+    <div class= "subject">
+      <h3>英語</h3>
+      <%= column_chart @periodic_tests.pluck(:day, :english) %>
+    </div>
+    <div class= "subject">
+    <h3>数学</h3>
+    <%= column_chart @periodic_tests.pluck(:day, :math) %>
+    </div>
+    <div class= "subject">
+    <h3>国語</h3>
+    <%= column_chart @periodic_tests.pluck(:day, :japanese) %>
+    </div>
+    <div class= "subject">
+    <h3>理科</h3>
+    <%= column_chart @periodic_tests.pluck(:day, :science) %>
+    </div>
+    <div class= "subject">
+    <h3>社会</h3>
+    <%= column_chart @periodic_tests.pluck(:day, :society) %>
+    </div>
+  </div>
+  
+  <button type="button"  data-toggle="collapse" data-target="#testdemo2", class= "btn btn-primary">模試</button>
+  <div id="testdemo2" class="collapse test-note">
+    <div class= "subject">
+      <h3>英語</h3>
+      <%= column_chart @demo_tests.pluck(:day, :english) %>
+    </div>
+    <div class= "subject">
+    <h3>数学</h3>
+    <%= column_chart @demo_tests.pluck(:day, :math) %>
+    </div>
+    <div class= "subject">
+    <h3>国語</h3>
+    <%= column_chart @demo_tests.pluck(:day, :japanese) %>
+    </div>
+    <div class= "subject">
+    <h3>理科</h3>
+    <%= column_chart @demo_tests.pluck(:day, :science) %>
+    </div>
+    <div class= "subject">
+    <h3>社会</h3>
+    <%= column_chart @demo_tests.pluck(:day, :society) %>
+    </div>
+  </div>
 </div>
 
 <!--モーダルウインドウ表示-->

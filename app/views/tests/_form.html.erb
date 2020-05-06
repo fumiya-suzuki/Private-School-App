@@ -34,6 +34,8 @@
       
       <%= f.label :society, class: "label-#{yield(:class_text)}" %>
       <%= f.number_field :society, class: "form-control" %>
+      
 
+      
       <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
     <% end %>

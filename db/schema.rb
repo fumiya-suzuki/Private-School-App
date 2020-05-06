@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_03_124855) do
+ActiveRecord::Schema.define(version: 2020_05_05_115650) do
 
   create_table "attendances", force: :cascade do |t|
     t.date "worked_on"
@@ -40,16 +40,18 @@ ActiveRecord::Schema.define(version: 2020_05_03_124855) do
   create_table "tests", force: :cascade do |t|
     t.date "day"
     t.integer "types"
-    t.integer "english"
-    t.integer "math"
-    t.integer "japanese"
-    t.integer "science"
-    t.integer "society"
+    t.integer "english", default: 0
+    t.integer "math", default: 0
+    t.integer "japanese", default: 0
+    t.integer "science", default: 0
+    t.integer "society", default: 0
     t.text "comment"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.integer "five_subjects"
+    t.integer "three_subjects"
     t.index ["user_id"], name: "index_tests_on_user_id"
   end
 
