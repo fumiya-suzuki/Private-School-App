@@ -91,7 +91,11 @@
             <%= link_to "編集", edit_teacher_user_path(@user), class: "btn btn-success" %>
         <% end %>
    <% end %>
-    <%= link_to "テスト結果報告", new_user_test_path(@user), class: "btn btn-success" %>
-     <%= link_to "テスト結果", user_tests_path(@user), class: "btn btn-success" %>
+   <% unless @user.admin? || @user.teacher? %>
+     <% if current_user?(@user) %>
+      <%= link_to "テスト結果報告", new_user_test_path(@user), class: "btn btn-warning" %>
+     <% end %>
+      <%= link_to "テスト個票", user_tests_path(@user), class: "btn btn-warning" %>
+   <% end %>
    </div>
 </div>

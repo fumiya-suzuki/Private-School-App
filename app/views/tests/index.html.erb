@@ -1,12 +1,14 @@
-<% provide(:title, 'Tests') %>
+<% provide(:title, 'テスト個票') %>
 <div class="col-md-10 col-md-offset-1">
-  <h1>【テスト結果】<%= @user.name %></h1>
+  <h1>【テスト個票】<%= link_to @user.name, @user %></h1>
   <table class="table table-condensed table-hover" id="table-users">
     <thead>
       <tr>
         <th></th>
         <th>テスト結果報告日</th>
         <th>テスト名</th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <% @tests.each do |test| %>
@@ -20,6 +22,10 @@
         </td>
       <td><%= test.day %></td>
       <td><%= link_to test.name, show_subject_user_test_path(@user, test), remote: true %></td>
+      <td><%= link_to "編集", edit_user_test_path(@user, test), class: "btn btn-success" %></td>
+      <td><%= link_to "削除", user_test_path(@user, test), method: :delete,
+         data: { confirm: "削除してよろしいですか？" },
+         class: "btn btn-danger" %></td>
     </tr>
 
     <% end %>
