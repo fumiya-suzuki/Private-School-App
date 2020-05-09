@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   get '/index_teacher', to: 'users#index_teacher'
   get '/search', to: 'users#search'
   
-  
+  post '/callback' => 'linebot#callback'
   
 
 end
