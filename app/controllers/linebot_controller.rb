@@ -73,23 +73,13 @@ class LinebotController < ApplicationController
       "type": "template",
       "altText": "this is a confirm template",
       "template": {
-          "type": "confirm",
-          "text": "入会を希望しますか？",
-          "actions": [
-              {
-                "type": "message",
+        "actions": [
+                "type": "uri",
                 # Botから送られてきたメッセージに表示される文字列です。
-                "label": "はい",
+                "label": "入会はこちらから",
                 # ボタンを押した時にBotに送られる文字列です。
-                "text": "https://serene-scrubland-29400.herokuapp.com",
-                "text": "こちらから登録お願いします！"
-              },
-              {
-                "type": "message",
-                "label": "いいえ",
-                "text": "キャンセルしました。"
-              }
-          ]
+                "uri": "https://serene-scrubland-29400.herokuapp.com"
+                ]
       }
     }
     end
@@ -99,21 +89,10 @@ class LinebotController < ApplicationController
       "type": "template",
       "altText": "this is a confirm template",
       "template": {
-          "type": "confirm",
-          "text": "質問を希望しますか？",
           "actions": [
-              {
-                "type": "message",
-                # Botから送られてきたメッセージに表示される文字列です。
-                "label": "はい",
-                # ボタンを押した時にBotに送られる文字列です。
-                "text": "terakoyaqr.png"
-              },
-              {
-                "type": "message",
-                "label": "いいえ",
-                "text": "キャンセルしました。"
-              }
+            "type": "image",
+            "originalContentUrl": "terakoyaqr.jpg",
+            "previewImageUrl": "terakoyaqr.jpg"
           ]
       }
     }
