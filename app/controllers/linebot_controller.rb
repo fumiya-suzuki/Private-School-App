@@ -84,7 +84,6 @@ class LinebotController < ApplicationController
                 "text": "https://serene-scrubland-29400.herokuapp.com"
                }
                 ],
-                "thumbnailImageUrl": "SPECIFY_YOUR_IMAGE_URL"
       }
     }
     end
@@ -98,9 +97,9 @@ class LinebotController < ApplicationController
           "text": "質問希望",
           "actions": [
             {
-            "type": "image",
-            "originalContentUrl": "https://serene-scrubland-29400.herokuapp.com/terakoyaqr.jpg",
-            "previewImageUrl": "https://serene-scrubland-29400.herokuapp.com/terakoyaqr.jpg"
+            "type": "message",
+            "label": "質問はこちら",
+            "text": "https://serene-scrubland-29400.herokuapp.com/terakoyaqr.jpg"
             }
       ]
       }
