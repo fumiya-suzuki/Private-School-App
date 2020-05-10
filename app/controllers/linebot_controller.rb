@@ -26,9 +26,11 @@ class LinebotController < ApplicationController
         case event.type
         when Line::Bot::Event::MessageType::Text
           # LINEから送られてきたメッセージが「アンケート」と一致するかチェック
-          if event.message['text'].eql?('アンケート')
+          if event.message['text'].eql?('面談')
             # private内のtemplateメソッドを呼び出します。
             client.reply_message(event['replyToken'], template)
+          elsif event.message['text'].eql?('入会')
+            client.reply_message(event['replyToken'], template1)
           end
         end
       end
@@ -45,22 +47,47 @@ class LinebotController < ApplicationController
       "altText": "this is a confirm template",
       "template": {
           "type": "confirm",
-          "text": "今日のもくもく会は楽しいですか？",
+          "text": "面談を希望しますか？",
           "actions": [
               {
                 "type": "message",
                 # Botから送られてきたメッセージに表示される文字列です。
-                "label": "楽しい",
+                "label": "はい",
                 # ボタンを押した時にBotに送られる文字列です。
-                "text": "楽しい"
+                "text": "面談希望しました。"
               },
               {
                 "type": "message",
-                "label": "楽しくない",
-                "text": "楽しくない"
+                "label": "いいえ",
+                "text": "キャンセルしました。"
               }
           ]
       }
     }
   end
+  
+    def template1
+    {
+      "type": "template",
+      "altText": "this is a confirm template",
+      "template": {
+          "type": "confirm",
+          "text": "入会を希望しますか？",
+          "actions": [
+              {
+                "type": "message",
+                # Botから送られてきたメッセージに表示される文字列です。
+                "label": "はい",
+                # ボタンを押した時にBotに送られる文字列です。
+                "text": "https://serene-scrubland-29400.herokuapp.com"
+              },
+              {
+                "type": "message",
+                "label": "いいえ",
+                "text": "キャンセルしました。"
+              }
+          ]
+      }
+    }
+    end
 end
