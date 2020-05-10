@@ -81,7 +81,7 @@ class LinebotController < ApplicationController
                 # Botから送られてきたメッセージに表示される文字列です。
                 "label": "入会はこちらから",
                 # ボタンを押した時にBotに送られる文字列です。
-                "uri": "https://serene-scrubland-29400.herokuapp.com"
+                "text": "https://serene-scrubland-29400.herokuapp.com"
                }
               ]
       }
@@ -100,7 +100,12 @@ class LinebotController < ApplicationController
             "type": "image",
             "originalContentUrl": "terakoyaqr.jpg",
             "previewImageUrl": "terakoyaqr.jpg"
-            }
+            },
+              {
+                "type": "message",
+                "label": "いいえ",
+                "text": "キャンセルしました。"
+              }
       ]
       }
     }
