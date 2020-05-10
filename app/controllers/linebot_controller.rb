@@ -99,7 +99,7 @@ class LinebotController < ApplicationController
             {
             "type": "message",
             "label": "質問はこちら",
-            "text": "terakoyaqr.jpg"
+            "text": "https://line.me/R/ti/p/@850nnrsb"
             }
       ]
       }
