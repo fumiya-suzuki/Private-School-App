@@ -75,15 +75,21 @@ class LinebotController < ApplicationController
       "template": {
     
           "type": "confirm",
-          "text": "面談を希望しますか？",
+          "text": "入会を希望しますか？",
           "actions": [
                { "type": "message",
                 # Botから送られてきたメッセージに表示される文字列です。
                 "label": "入会はこちらから",
                 # ボタンを押した時にBotに送られる文字列です。
                 "text": "https://serene-scrubland-29400.herokuapp.com"
-               }
-              ]
+               },
+                   
+               { "type": "message",
+                # Botから送られてきたメッセージに表示される文字列です。
+                "label": "キャンセル",
+                # ボタンを押した時にBotに送られる文字列です。
+                "text": "キャンセルしました。" }
+                ]
       }
     }
     end
@@ -94,7 +100,7 @@ class LinebotController < ApplicationController
       "altText": "this is a confirm template",
       "template": {
           "type": "confirm",
-          "text": "面談を希望しますか？",
+          "text": "質問を希望しますか？",
           "actions": [
             {
             "type": "image",
