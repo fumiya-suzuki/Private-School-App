@@ -83,7 +83,8 @@ class LinebotController < ApplicationController
                 # ボタンを押した時にBotに送られる文字列です。
                 "text": "https://serene-scrubland-29400.herokuapp.com"
                }
-                ]
+                ],
+                "thumbnailImageUrl": "SPECIFY_YOUR_IMAGE_URL"
       }
     }
     end
@@ -91,21 +92,16 @@ class LinebotController < ApplicationController
     def template2
     {
       "type": "template",
-      "altText": "this is a confirm template",
+      "altText": "this is a buttons template",
       "template": {
-          "type": "confirm",
-          "text": "質問を希望しますか？",
+          "type": "buttons",
+          "text": "質問希望",
           "actions": [
             {
             "type": "image",
-            "originalContentUrl": "terakoyaqr.jpg",
-            "previewImageUrl": "terakoyaqr.jpg"
-            },
-              {
-                "type": "message",
-                "label": "いいえ",
-                "text": "キャンセルしました。"
-              }
+            "originalContentUrl": "https://serene-scrubland-29400.herokuapp.com/terakoyaqr.jpg",
+            "previewImageUrl": "https://serene-scrubland-29400.herokuapp.com/terakoyaqr.jpg"
+            }
       ]
       }
     }
