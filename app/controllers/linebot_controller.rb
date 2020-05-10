@@ -97,9 +97,9 @@ class LinebotController < ApplicationController
           "text": "質問希望",
           "actions": [
             {
-            "type": "message",
+            "type": "uri",
             "label": "質問はこちら",
-            "text": "https://line.me/R/ti/p/@850nnrsb"
+            "uri": "https://line.me/R/ti/p/@850nnrsb"
             }
       ]
       }
