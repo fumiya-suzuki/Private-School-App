@@ -31,6 +31,8 @@ class LinebotController < ApplicationController
             client.reply_message(event['replyToken'], template)
           elsif event.message['text'].eql?('入会')
             client.reply_message(event['replyToken'], template1)
+          elsif event.message['text'].eql?('質問')
+            client.reply_message(event['replyToken'], template2) 
           end
         end
       end
@@ -79,7 +81,33 @@ class LinebotController < ApplicationController
                 # Botから送られてきたメッセージに表示される文字列です。
                 "label": "はい",
                 # ボタンを押した時にBotに送られる文字列です。
-                "text": "https://serene-scrubland-29400.herokuapp.com"
+                "text": "https://serene-scrubland-29400.herokuapp.com",
+                "text": "こちらから登録お願いします！"
+              },
+              {
+                "type": "message",
+                "label": "いいえ",
+                "text": "キャンセルしました。"
+              }
+          ]
+      }
+    }
+    end
+    
+    def template2
+    {
+      "type": "template",
+      "altText": "this is a confirm template",
+      "template": {
+          "type": "confirm",
+          "text": "質問を希望しますか？",
+          "actions": [
+              {
+                "type": "message",
+                # Botから送られてきたメッセージに表示される文字列です。
+                "label": "はい",
+                # ボタンを押した時にBotに送られる文字列です。
+                "text": "terakoyaqr.png"
               },
               {
                 "type": "message",
