@@ -77,11 +77,11 @@ class LinebotController < ApplicationController
           "type": "buttons",
           "text": "入会希望",
           "actions": [
-               { "type": "message",
+               { "type": "uri",
                 # Botから送られてきたメッセージに表示される文字列です。
                 "label": "入会はこちら",
                 # ボタンを押した時にBotに送られる文字列です。
-                "text": "https://serene-scrubland-29400.herokuapp.com"
+                "uri": "https://serene-scrubland-29400.herokuapp.com"
                }
                 ],
       }
@@ -99,7 +99,7 @@ class LinebotController < ApplicationController
             {
             "type": "message",
             "label": "質問はこちら",
-            "text": "https://serene-scrubland-29400.herokuapp.com/terakoyaqr.jpg"
+            "text": "terakoyaqr.jpg"
             }
       ]
       }
