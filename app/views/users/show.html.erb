@@ -1,6 +1,8 @@
 <% provide(:title, @user.name) %>
 <% if @user.teacher == true %>
     <h3>講師ID：<%= @user.number %></h3>
+<% elsif @user.admin? %>
+  <h3>寺子屋SUZUKI　塾長</h3>
 <% else %>
     <h3>生徒ID：<%= @user.number %></h3>
 <% end %>
@@ -22,6 +24,16 @@
     <tr>
       <th>入塾日</th>
       <td><%= l(@user.created_at, format: :day) %></td>
+    </tr>
+    <% elsif @user.admin? %>
+    <b>入塾希望の方はこちらまで！</b>
+    <tr>
+      <th>電話番号</th>
+      <td><%= @user.tel %></td>
+    </tr>
+    <tr>
+      <th>出身校</th>
+      <td><%= @user.school %></td>
     </tr>
     <% else %>
     <tr>
@@ -54,6 +66,7 @@
       <td><%= l(@user.created_at, format: :day) %></td>
     </tr>
     <% end %>
+    <% if logged_in? %>
     <% if current_user.teacher? && @user.teacher == false %>
     <tr>
       <th>日報提出</th>
@@ -72,7 +85,9 @@
     </tr>
     <% end %>
     <% end %>
+    <% end %>
   </table>
+<% if logged_in? %>
 <div class= "edit-btn">
       <% if current_user.admin? || current_user?(@user)  %>
         <% if @user.teacher? %>
@@ -98,4 +113,5 @@
       <%= link_to "テスト個票", user_tests_path(@user), class: "btn btn-warning" %>
    <% end %>
    </div>
+<% end %>
 </div>

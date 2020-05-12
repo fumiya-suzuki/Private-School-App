@@ -18,10 +18,20 @@ class ApplicationController < ActionController::Base
       end
     end
     
+    def logged_out_user
+      unless logged_in? || @user.admin?
+        store_location
+        flash[:danger] = "ログインしてください。"
+        redirect_to login_url
+      end
+    end
+        
+    
     # アクセスしたユーザーが現在ログインしているユーザーか確認します。
     def correct_user
       unless current_user?(@user) || current_user.admin?
         redirect_to(root_url) 
+        flash[:danger] = "アクセス権限がありません。"
       end
     end
     

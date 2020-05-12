@@ -1,7 +1,28 @@
 <% provide(:title, "") %>
-<div class = "center jumbotron">
-  <h1>塾データ管理システム</h1>
-  <p>塾のデータをこのアプリケーション上で全て管理できます。</p>
-  <%= link_to "生徒登録", signup_path, class: "btn btn-lg btn-primary" %>
-  <%= link_to "講師登録", new_teacher_path, class: "btn btn-lg btn-primary" %>
+<div class= "top-background">
+  <div class = "top-content">
+    <div class = "top-text">
+      <h3>教え方</h3>
+      <h1>日本一!</h1>
+      <p>寺子屋SUZUKIは勉強の仕方を教えて学力を伸ばします！</p>
+    </div class="fuchidori">
+  <% if logged_in? %>
+  <% if current_user.admin? %>
+    <%= link_to "生徒登録", signup_path  %>
+    <%= link_to "講師登録", new_teacher_path %>
+  <% else %>
+    <%= link_to "マイページ", user_path(current_user) %>
+  <% end %>
+  <% else %>
+    <div class= "logout-top">
+      <%= link_to "ログイン", login_path %>
+    </div>
+    <div class= "logout-top">
+      <%= link_to "塾長プロフィール", "#" %>
+    </div>
+  <% end %>
+    <div class= "logout-top">
+      <%= link_to "LINE", "#" %>
+    </div>
+  </div>
 </div>
