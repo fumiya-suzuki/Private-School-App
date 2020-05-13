@@ -1,16 +1,23 @@
 class ReportsController < ApplicationController
+  before_action :set_user_id, only: [:new, :create, :index, :admin_update]
+  before_action :set_user, only: :admin_index
+  before_action :logged_in_user
+  before_action :admin_user, only: [:admin_index, :admin_update]
+  before_action :admin_user_page, only: [:admin_index, :admin_update]
+  before_action :teacher_user, only: [:index, :new, :create, :show]
+  before_action :staff_invalid, only: [:show, :new, :create, :index,]
+
+  
   
   def show
     
   end
   
   def new
-    @user = User.find(params[:user_id])
     @report = Report.new
   end
   
   def create
-    @user = User.find(params[:user_id])
     @report = @user.reports.new(report_params)
     if @report.save
       flash[:success] = '日報を塾長に提出しました。'
@@ -21,17 +28,14 @@ class ReportsController < ApplicationController
   end
   
   def index
-    @user = User.find(params[:user_id])
     @reports = Report.where(user_id: @user.id)
   end
   
   def admin_index
-    @user = User.find(params[:id])
     @reports = Report.where(admin_confirm: 1)
   end
   
   def admin_update
-    @user = User.find(params[:user_id])
     reports_params.each do |id, item|
       @report = Report.find(id)
        if params[:user][:reports][id][:change] == "1"

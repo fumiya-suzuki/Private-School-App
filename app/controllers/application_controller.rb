@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
       @user = User.find(params[:id])
     end
     
+    def set_user_id
+      @user = User.find(params[:user_id])
+    end
+    
     # ログイン済みのユーザーか確認します。
     def logged_in_user
       unless logged_in?
@@ -19,10 +23,17 @@ class ApplicationController < ActionController::Base
     end
     
     def logged_out_user
-      unless logged_in? || @user.admin?
-        store_location
-        flash[:danger] = "ログインしてください。"
-        redirect_to login_url
+      if logged_in? 
+        unless current_user.admin? || current_user.teacher? || current_user?(@user) || @user.teacher? || @user.admin?
+          flash[:danger] = "アクセス権限がありません"
+          redirect_to root_url
+        end
+      else
+        unless @user.admin?
+          store_location
+          flash[:danger] = "ログインしてください"
+          redirect_to login_url
+        end
       end
     end
         
@@ -31,14 +42,47 @@ class ApplicationController < ActionController::Base
     def correct_user
       unless current_user?(@user) || current_user.admin?
         redirect_to(root_url) 
-        flash[:danger] = "アクセス権限がありません。"
+        flash[:danger] = "アクセス権限がありませeeeん。"
       end
     end
     
   
   # システム管理権限所有かどうか判定します。
   def admin_user
-    redirect_to root_url unless current_user.admin?
+    unless current_user.admin?
+      redirect_to root_url 
+      flash[:danger] = "アクセス権限がありません。"
+    end
+  end
+  
+  # ログイン中のユーザーがスタッフユーザーかどうか
+  def teacher_user
+    unless current_user.teacher? || current_user.admin?
+      redirect_to root_url 
+      flash[:danger] = "アクセス権限がありません。"
+    end
+  end
+  
+  # スタッフユーザーもしくはログイン中のユーザーか
+  def staff_or_correct_user
+      unless current_user?(@user) || current_user.admin? || current_user.teacher?
+        redirect_to(root_url) 
+        flash[:danger] = "アクセス権限がありません。"
+      end
+  end
+  # スタッフユーザーには必要ないページ
+  def staff_invalid
+    if @user.teacher? || @user.admin?
+      redirect_to(root_url) 
+      flash[:danger] = "アクセス権限がありません。"
+    end
+  end
+  
+  def admin_user_page
+    unless @user.admin?
+     redirect_to(root_url)
+     flash[:danger] = "アクセス出来ないページです。"
+    end    
   end
   
   def set_one_month 

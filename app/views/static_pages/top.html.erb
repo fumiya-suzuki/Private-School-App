@@ -5,11 +5,14 @@
       <h3>教え方</h3>
       <h1>日本一!</h1>
       <p>寺子屋SUZUKIは勉強の仕方を教えて学力を伸ばします！</p>
-    </div class="fuchidori">
+    </div>
   <% if logged_in? %>
   <% if current_user.admin? %>
     <%= link_to "生徒登録", signup_path  %>
     <%= link_to "講師登録", new_teacher_path %>
+    <div class= "logout-top">
+      <%= link_to "マイページ", user_path(current_user) %>
+    </end>
   <% else %>
     <%= link_to "マイページ", user_path(current_user) %>
   <% end %>
@@ -17,10 +20,10 @@
     <div class= "logout-top">
       <%= link_to "ログイン", login_path %>
     </div>
-    <div class= "logout-top">
-      <%= link_to "塾長プロフィール", "#" %>
-    </div>
   <% end %>
+    <div class= "logout-top">
+      <%= link_to "塾長プロフィール", user_path(1) %>
+    </div>
     <div class= "logout-top">
       <%= link_to "LINE", "#" %>
     </div>

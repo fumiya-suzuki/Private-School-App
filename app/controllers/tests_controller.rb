@@ -1,16 +1,20 @@
 class TestsController < ApplicationController
+  before_action :set_user_id, only: [:new, :edit, :update, :create, :index, :destroy]
+  before_action :logged_in_user
+  before_action :correct_user, only: [:new, :edit, :update, :create, :destroy]
+  before_action :staff_or_correct_user, only: [:index, :show_subject]
+  before_action :staff_invalid
+  
+  
   def new
-    @user = User.find(params[:user_id])
     @test = Test.new
   end
   
   def edit 
-    @user = User.find(params[:user_id])
     @test = Test.find(params[:id])
   end
   
   def update
-    @user = User.find(params[:user_id])
     @test = Test.find(params[:id])
     if @test.update_attributes(test_params)
       flash[:success] = "テスト結果を編集しました。"
@@ -21,7 +25,6 @@ class TestsController < ApplicationController
   end
   
   def create
-    @user = User.find(params[:user_id])
     @test = @user.tests.new(test_params)
     if @test.save
       flash[:success] = 'テスト結果を報告しました。'
@@ -33,7 +36,6 @@ class TestsController < ApplicationController
   
   
   def index 
-    @user = User.find(params[:user_id])
     @tests = Test.where(user_id: @user.id).order(day: "ASC")
     @demo_tests = Test.where(user_id: @user.id, types: 2).order(day: "ASC")
     @periodic_tests = Test.where(user_id: @user.id, types: 1).order(day: "ASC")
@@ -45,7 +47,6 @@ class TestsController < ApplicationController
   end
   
   def destroy
-    @user = User.find(params[:user_id])
     @test = Test.find(params[:id])
     @test.destroy
     flash[:success] = "#{@test.name}のデータを削除しました。"

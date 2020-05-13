@@ -67,14 +67,16 @@
     </tr>
     <% end %>
     <% if logged_in? %>
-    <% if current_user.teacher? && @user.teacher == false %>
-    <tr>
-      <th>日報提出</th>
-      <td>
-        <%= link_to "日報提出", new_user_report_path(@user), class: "btn btn-info" %>
-      </td>
-    </tr>
-    <% end %>
+      <% if current_user.teacher? && @user.teacher == false %>
+        <% unless @user.admin? %>    
+          <tr>
+            <th>日報提出</th>
+            <td>
+              <%= link_to "日報提出", new_user_report_path(@user), class: "btn btn-info" %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
     <% if current_user.teacher? || current_user.admin?  %>
     <% unless @user.teacher? || @user.admin? %>
     <tr>
