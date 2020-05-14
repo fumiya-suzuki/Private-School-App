@@ -46,7 +46,7 @@ class LinebotController < ApplicationController
   def template
     {
       "type": "template",
-      "altText": "this is a confirm template",
+      "altText": "面談希望",
       "template": {
           "type": "confirm",
           "text": "面談を希望しますか？",
@@ -71,7 +71,7 @@ class LinebotController < ApplicationController
     def template1
     {
       "type": "template",
-      "altText": "this is a buttons template",
+      "altText": "入会希望",
       "template": {
     
           "type": "buttons",
@@ -91,7 +91,7 @@ class LinebotController < ApplicationController
     def template2
     {
       "type": "template",
-      "altText": "this is a buttons template",
+      "altText": "質問希望",
       "template": {
           "type": "buttons",
           "text": "質問希望",

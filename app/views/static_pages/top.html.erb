@@ -24,8 +24,10 @@
     <div class= "logout-top">
       <%= link_to "塾長プロフィール", user_path(1) %>
     </div>
+  <% unless logged_in? %>
     <div class= "logout-top">
-      <%= link_to "LINE", "#" %>
+      <a href="https://lin.ee/3FxbHcywo" id="line"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="58" border="0"></a>
     </div>
+  <% end %>
   </div>
 </div>
