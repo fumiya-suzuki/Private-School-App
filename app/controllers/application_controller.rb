@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
       @user = User.find(params[:user_id])
     end
     
+    def set_test
+      @test = Test.find(params[:id])
+    end
+    
     # ログイン済みのユーザーか確認します。
     def logged_in_user
       unless logged_in?
@@ -60,6 +64,13 @@ class ApplicationController < ActionController::Base
     unless current_user.teacher? || current_user.admin?
       redirect_to root_url 
       flash[:danger] = "アクセス権限がありません。"
+    end
+  end
+  
+  def teacher_user_page 
+    unless @user.teacher?
+     redirect_to(root_url)
+     flash[:danger] = "アクセス出来ないページです。"
     end
   end
   

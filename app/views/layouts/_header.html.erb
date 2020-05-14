@@ -9,11 +9,13 @@
         <% if logged_in? %>
           <li>
             <% if current_user.admin? %>
-              <%= link_to "🔔", reports_admin_index_user_path(current_user) %>
+              <%= link_to "日報一覧(#{Report.where(admin_confirm: 1).count})", reports_admin_index_user_path(current_user) %>
             <% end %>
           </li>
-          <% if current_user.admin? || current_user.teacher? %>
+          <% if current_user.teacher? %>
             <li><%= link_to "勤怠登録", user_attendances_path(current_user) %></li>
+          <% end %>
+          <% if current_user.admin? || current_user.teacher? %>
             <li><%= link_to "生徒一覧", users_path %></li>
           <% end %>
           <li><%= link_to "講師一覧", index_teacher_path %></li>

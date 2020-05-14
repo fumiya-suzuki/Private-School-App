@@ -1,9 +1,11 @@
 class TestsController < ApplicationController
   before_action :set_user_id, only: [:new, :edit, :update, :create, :index, :destroy]
+  before_action :set_user, only: :show_subject
   before_action :logged_in_user
   before_action :correct_user, only: [:new, :edit, :update, :create, :destroy]
   before_action :staff_or_correct_user, only: [:index, :show_subject]
   before_action :staff_invalid
+  before_action :set_test, only: [:edit, :update, :show_subject, :destroy]
   
   
   def new
@@ -11,11 +13,9 @@ class TestsController < ApplicationController
   end
   
   def edit 
-    @test = Test.find(params[:id])
   end
   
   def update
-    @test = Test.find(params[:id])
     if @test.update_attributes(test_params)
       flash[:success] = "テスト結果を編集しました。"
     else
@@ -42,12 +42,9 @@ class TestsController < ApplicationController
   end
   
   def show_subject
-    @user = User.find(params[:id])
-    @test = Test.find(params[:id])
   end
   
   def destroy
-    @test = Test.find(params[:id])
     @test.destroy
     flash[:success] = "#{@test.name}のデータを削除しました。"
     redirect_to user_tests_url(@user)

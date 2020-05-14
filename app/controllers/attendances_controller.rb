@@ -4,7 +4,7 @@ class AttendancesController < ApplicationController
   before_action :logged_in_user
   before_action :correct_user
   before_action :set_one_month, only: :index
-  
+  before_action :teacher_user_page  
   def index
     @attendances_break = @user.attendances.where(c_one: nil, c_two: nil, k_one: nil, k_two: nil, worked_on: @first_day..@last_day).order(:worked_on).count
   end

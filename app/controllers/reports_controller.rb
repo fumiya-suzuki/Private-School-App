@@ -33,6 +33,7 @@ class ReportsController < ApplicationController
   
   def admin_index
     @reports = Report.where(admin_confirm: 1)
+    @reports_count = @reports.count
   end
   
   def admin_update
