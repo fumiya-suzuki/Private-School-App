@@ -1,4 +1,4 @@
-
+<% provide(:title, '勤怠登録') %>
 <%= form_with(model: @user, url: user_attendances_update_one_month_path(date: @first_day), local: true, method: :patch) do |f| %>
 <div>
   <h1>勤怠登録画面</h1>
