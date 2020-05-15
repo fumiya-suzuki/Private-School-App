@@ -85,7 +85,7 @@ class ApplicationController < ActionController::Base
   def staff_invalid
     if @user.teacher? || @user.admin?
       redirect_to(root_url) 
-      flash[:danger] = "アクセス権限がありません。"
+      flash[:danger] = "アクセス権限がありdddません。"
     end
   end
   

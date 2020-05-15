@@ -1,6 +1,5 @@
 class AttendancesController < ApplicationController
-  before_action :set_user_id, only: :index
-  before_action :set_user, only: :update_onemonth
+  before_action :set_user_id, only: [:index, :update_one_month]
   before_action :logged_in_user
   before_action :correct_user
   before_action :set_one_month, only: :index

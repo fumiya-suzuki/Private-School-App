@@ -3,8 +3,8 @@ class TestsController < ApplicationController
   before_action :set_user, only: :show_subject
   before_action :logged_in_user
   before_action :correct_user, only: [:new, :edit, :update, :create, :destroy]
-  before_action :staff_or_correct_user, only: [:index, :show_subject]
-  before_action :staff_invalid
+  before_action :staff_or_correct_user, only: :index
+  before_action :staff_invalid, only: [:new, :edit, :update, :create, :index, :destroy]
   before_action :set_test, only: [:edit, :update, :show_subject, :destroy]
   
   
