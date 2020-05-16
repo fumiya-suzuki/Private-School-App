@@ -29,6 +29,7 @@
     </tr>
     <% elsif @user.admin? %>
     <b>入塾希望の方はこちらまで！</b>
+    <b>お問い合わせは<%= link_to "こちら", contacts_new_path %></b>
     <tr>
       <th>電話番号</th>
       <td><%= @user.tel %></td>

@@ -8,5 +8,11 @@ class ContactMailerTest < ActionMailer::TestCase
     assert_equal ["from@example.com"], mail.from
     assert_match "Hi", mail.body.encoded
   end
+  
+  def contact
+     contact = contact.new(email: "sample@email.com", message: "問い合わせメッセージ")
+
+     contactMailer.contact_mail(contact)
+  end
 
 end
