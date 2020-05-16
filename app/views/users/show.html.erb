@@ -16,10 +16,12 @@
 <div class="col-md-10 col-md-offset-1 user-show-table">
   <table class="table table-condensed table-bordered table-hover" id="table-users">
     <% if @user.teacher == true %>
-    <tr>
-      <th>電話番号</th>
-      <td><%= @user.tel %></td>
-    </tr>
+    <% if current_user.admin? %>
+      <tr>
+        <th>電話番号</th>
+        <td><%= @user.tel %></td>
+      </tr>
+    <% end %>
     
     <tr>
       <th>入塾日</th>
