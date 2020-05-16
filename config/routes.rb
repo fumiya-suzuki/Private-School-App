@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'contacts/new'
+  post "contacts/new"
+  post 'contacts/create'
   get 'sessions/new'
 
   root 'static_pages#top'
