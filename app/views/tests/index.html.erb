@@ -22,10 +22,12 @@
         </td>
       <td><%= test.day %></td>
       <td><%= link_to test.name, show_subject_user_test_path(@user, test), remote: true %></td>
+      <% if current_user.admin? || current_user?(@user)%>
       <td><%= link_to "編集", edit_user_test_path(@user, test), class: "btn btn-success" %></td>
       <td><%= link_to "削除", user_test_path(@user, test), method: :delete,
          data: { confirm: "削除してよろしいですか？" },
          class: "btn btn-danger" %></td>
+      <% end %>
     </tr>
 
     <% end %>
