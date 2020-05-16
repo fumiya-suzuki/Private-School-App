@@ -1,4 +1,4 @@
-<%= form_for contacts_create_path, method: :post do |f| %>
+<%= form_with(model: @contact, local: true, url: contacts_create_path) do |f| %>
 
   <div class="form-group">
     <%= f.label :email, '返信先メールアドレス' %>
