@@ -42,7 +42,7 @@
         <% end %>
       </tr>
   </table>
-    <% if @reports_count == nil %>
+    <% unless @reports_count == 0 %>
       <%= f.submit "変更を送信する" ,class: "btn btn-primary btn-lg approval-btn" %>
     <% else %>
       <h3>現在申請はありません。</h3>
