@@ -1,3 +1,7 @@
+<% provide(:title, '問い合わせ') %>
+<% provide(:class_text, 'signup') %>
+
+
 <%= form_with(model: @contact, local: true, url: contacts_create_path) do |f| %>
 
   <div class="form-group">
@@ -10,6 +14,6 @@
    <%= f.text_area :message, size: '10x10', class: 'form-control' %>
  </div>
 
-  <%= f.submit '送信' %>
+  <%= f.submit '送信', class: "btn btn-primary btn-block btn-#{yield(:class_text)}"  %>
 
 <% end %>

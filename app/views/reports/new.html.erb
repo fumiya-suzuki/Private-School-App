@@ -3,7 +3,7 @@
 <% provide(:button_text, '日報提出') %>
 <h1>日報提出</h1>
 <div>
-  <h3><%= @user.name %></h2>
+  <h3><%= link_to @user.name, user_path(@user) %></h2>
   <h2>担当講師：<%= current_user.name %></h2>
 </div>
 <div class="row">

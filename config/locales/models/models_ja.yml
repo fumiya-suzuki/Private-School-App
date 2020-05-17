@@ -4,6 +4,7 @@ ja:
       user: ユーザー
       report: 日報
       attendance: 勤怠
+      test: テスト
     attributes:
         user:
           id: ID
@@ -28,3 +29,14 @@ ja:
           c_two:  中1：2以上
           k_one:  高1：1
           k_two:  高1：2以上
+        test:
+          types: 種類
+          day: 日付
+          name: テスト名
+          english: 英語
+          math: 数学
+          japanese: 国語
+          science: 理科
+          society: 社会
+          five_subjects: 5教科
+          three_subjects: 3教科
